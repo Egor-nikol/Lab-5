@@ -26,12 +26,22 @@ def task_number_3():
     with open("task3.txt", "r") as f:
         text_3 = f.read()
 
-    pattern_id = 
-    pattern_second_name = 
-    pattern_mail = 
-    pattern_date = 
-    pattern_website = 
-    
+    pattern_id = r'\b\d+\b'
+    pattern_second_name = r'\b[A-Z][a-z]+\b'
+    pattern_mail = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    pattern_date = r'\b\d{4}-\d{2}-\d{2}\b'
+    pattern_website = r'\bhttps?://[^\s<>"]+\b'
+    text_3_users = re.findall(r'\S+(?:\s+\S+){4}', text_3)
+    with open("ans.txt", "w") as f:
+        print("ID", "second_name", "mail", "date", "website", file = f)
+        for user in text_3_users:
+            id_users = re.findall(pattern_id, user)
+            second_name = re.findall(pattern_second_name, user)
+            mail = re.findall(pattern_mail, user)
+            date = re.findall(pattern_date, user)
+            website = re.findall(pattern_website, user)
+            print(id_users[0], second_name[0], mail[0], date[0], website[0], file = f)
+
 
 #task_number_1()
 #task_number_2()
