@@ -26,7 +26,7 @@ def task_number_3():
     with open("task3.txt", "r") as f:
         text_3 = f.read()
 
-    pattern_id = r'\b\d+\b'
+    pattern_id = r'(?<!\S)[1-9]\d*(?!\S)'
     pattern_second_name = r'\b[A-Z][a-z]+\b'
     pattern_mail = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
     pattern_date = r'\b\d{4}-\d{2}-\d{2}\b'
@@ -43,6 +43,6 @@ def task_number_3():
             print(id_users[0], second_name[0], mail[0], date[0], website[0], file = f)
 
 
-#task_number_1()
-#task_number_2()
+task_number_1()
+task_number_2()
 task_number_3()
