@@ -1,4 +1,5 @@
 import re
+import csv
 
 
 def task_number_1():
@@ -32,15 +33,17 @@ def task_number_3():
     pattern_date = r'\b\d{4}-\d{2}-\d{2}\b'
     pattern_website = r'\bhttps?://[^\s<>"]+\b'
     text_3_users = re.findall(r'\S+(?:\s+\S+){4}', text_3)
-    with open("ans.txt", "w") as f:
-        print("ID", "second_name", "mail", "date", "website", file = f)
+    with open("ans.csv", "w", newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(["ID", "second_name", "mail", "date", "website"])
         for user in text_3_users:
             id_users = re.findall(pattern_id, user)
             second_name = re.findall(pattern_second_name, user)
             mail = re.findall(pattern_mail, user)
             date = re.findall(pattern_date, user)
             website = re.findall(pattern_website, user)
-            print(id_users[0], second_name[0], mail[0], date[0], website[0], file = f)
+            writer.writerow([id_users[0], second_name[0], mail[0], date[0],
+                              website[0]])
 
 
 task_number_1()
